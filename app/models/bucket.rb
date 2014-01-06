@@ -1,14 +1,14 @@
-require 's3'
+require 'open-uri'
 
 class Bucket
-  @bucket = S3::Service.new(secret_access_key: ENV['SECRET_ACCESS_KEY'], access_key_id: ENV['ACCESS_KEY_ID']).buckets.find('fuckthisshit')
+  @url = 'http://fuckthisshit.s3.amazonaws.com/'
+  @bucket = Nokogiri::XML(open(@url)).search('Contents')
 
   def self.bucket
     @bucket
   end
 
   def self.random_image(current_id = nil)
-
     begin
       @id = Random.rand(images.size)
     end while @id == current_id.to_i - 1
@@ -17,18 +17,13 @@ class Bucket
   end
 
   def self.images
-    bucket.objects
-  end
-
-  def self.find_image(id)
-    id = id.to_i
-    { object: images[id], id: id }
+    bucket.map { |node| { url: "#{@url}#{node.search('Key').text}", id: bucket.index(node) + 1 } }
   end
 
   def self.next_image(current_id)
     index = current_id.to_i - 1
 
-    if index == images.size
+    if current_id.to_i == images.size
       id = 0
     else
       id = index + 1
