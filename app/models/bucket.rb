@@ -25,6 +25,30 @@ class Bucket
     { object: images[id], id: id }
   end
 
+  def self.next_image(current_id)
+    index = current_id.to_i - 1
+
+    if index == images.size
+      id = 0
+    else
+      id = index + 1
+    end
+
+    { id: id + 1 }
+  end
+
+  def self.previous_image(current_id)
+    index = current_id.to_i - 1
+
+    if index == 0
+      id = images.size - 1
+    else
+      id = index - 1
+    end
+
+    { id: id + 1 }
+  end
+
   def self.find_cloudfront_image(id)
     "http://d2dvgyu43ozqxq.cloudfront.net/#{id}.gif"
   end

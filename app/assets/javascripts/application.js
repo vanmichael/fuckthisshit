@@ -11,3 +11,15 @@
 // about supported directives.
 //
 //= require_tree .
+
+document.onkeyup = function(event){
+  if (!window.disableRedirect) {
+    if (event.keyCode === 37 || event.keyCode === 40) {
+      window.location = window.location.href + '/previous';
+      window.disableRedirect = true;
+    } else if (event.keyCode === 38 || event.keyCode === 39) {
+      window.location = window.location.href + '/next';
+      window.disableRedirect = true;
+    }
+  }
+};
