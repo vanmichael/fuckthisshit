@@ -20,7 +20,8 @@ class Bucket
   end
 
   def self.images
-    bucket.map { |node| { url: "#{@url}#{node.search('Key').text}", id: bucket.index(node) + 1 } }
+    _bucket = bucket
+    _bucket.map { |node| { url: "#{@url}#{node.search('Key').text}", id: _bucket.index(node) + 1 } }
   end
 
   def self.next_image(current_id)
