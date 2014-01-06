@@ -11,7 +11,7 @@ class Bucket
 
     begin
       @id = Random.rand(images.size)
-    end while @id - 1 == current_id
+    end while @id == current_id.to_i - 1
 
     { object: images[@id], id: @id + 1 }
   end
