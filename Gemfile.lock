@@ -28,11 +28,6 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     builder (3.1.4)
-    byebug (2.5.0)
-      columnize (~> 0.3.6)
-      debugger-linecache (~> 1.2.0)
-    columnize (0.3.6)
-    debugger-linecache (1.2.0)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
@@ -95,7 +90,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   rails (= 4.0.2)
   s3
   sass-rails (~> 4.0.0)
