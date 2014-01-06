@@ -4,11 +4,11 @@ class Bucket
   @url = 'http://fuckthisshit.s3.amazonaws.com/'
 
   def self.get_xml
-    @bucket = Nokogiri::XML(open(@url)).search('Contents')
+    Nokogiri::XML(open(@url)).search('Contents')
   end
 
   def self.bucket
-    @bucket || get_xml
+    get_xml
   end
 
   def self.random_image(current_id = nil)
