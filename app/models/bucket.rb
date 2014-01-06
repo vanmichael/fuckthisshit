@@ -2,10 +2,13 @@ require 'open-uri'
 
 class Bucket
   @url = 'http://fuckthisshit.s3.amazonaws.com/'
-  @bucket = Nokogiri::XML(open(@url)).search('Contents')
+
+  def self.get_xml
+    @bucket = Nokogiri::XML(open(@url)).search('Contents')
+  end
 
   def self.bucket
-    @bucket
+    @bucket || get_xml
   end
 
   def self.random_image(current_id = nil)
