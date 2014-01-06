@@ -1,6 +1,11 @@
 class ImagesController < ApplicationController
   def show
     @image_url = Bucket.find_cloudfront_image(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { url: @image_url } }
+    end
   end
 
   def index
